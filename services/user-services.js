@@ -32,9 +32,15 @@ const deleteUserById = async (userId) => {
   return deleteUser;
 };
 
+const getAllUsers = async () => {
+  const user = await userRepository.getAllUsers();
+  return user;
+}
+
 module.exports = {
   addNewUser,
   getUserById,
   updateUserById,
   deleteUserById,
+  getAllUsers,
 }

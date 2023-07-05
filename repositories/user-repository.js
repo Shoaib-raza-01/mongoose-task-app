@@ -48,9 +48,16 @@ const deleteUserById = async (userId) => {
   return false;
 };
 
+const getAllUsers = async () =>{
+    let users=await User.find();
+    console.log(`all data fetched....`)
+    return users;
+}
+
 module.exports = {
   addNewUser,
   deleteUserById,
   updateUserById,
   getUserById,
+  getAllUsers,
 }

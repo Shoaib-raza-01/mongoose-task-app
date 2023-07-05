@@ -57,9 +57,19 @@ const deleteUserById =  async (req,res) => {
   }
 };
 
+const getAllUsers = async (req,res) => {
+  try{
+    const usersList=await userServices.getAllUsers();
+    return res.status(201).send(usersList);
+  } catch (err) {
+    return res.status(400).send({message : err.message})
+  }
+}
+
 module.exports = {
   addNewUser,
   getUserById,
   updateUserById,
   deleteUserById,
+  getAllUsers,
 }

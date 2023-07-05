@@ -1,10 +1,12 @@
 require("./mongoose-connect")
 const express = require("express");
 const userRoute = require("./routes/user-router")
+const taskRoute = require("./routes/task-router")
 const app = express();
 
 app.use(express.json());
 app.use("/user", userRoute)
+app.use("/task", taskRoute);
 
 const PORT = 8080;
 // function myfunc(){
