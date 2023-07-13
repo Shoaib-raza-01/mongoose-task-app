@@ -66,10 +66,21 @@ const getAllUsers = async (req,res) => {
   }
 }
 
+const loginUser = async (req, res) => {
+  try{
+  const {email, password} = req.body;
+  const user = await userServices.loginUser(email,password)
+  return res.status(201).send(user)
+  }catch(err){
+    return res.status(500).send({message: err.message})
+  }
+}
+
 module.exports = {
   addNewUser,
   getUserById,
   updateUserById,
   deleteUserById,
   getAllUsers,
+  loginUser
 }

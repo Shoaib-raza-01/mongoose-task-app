@@ -1,5 +1,6 @@
 const userRepository = require("../repositories/user-repository");
 const BadRequestException = require("../exceptions/BadRequestException");
+const User = require("../models/Users")
 
 const EDITALE_USER_FIELDS = ["name", "password", "age"];
 
@@ -37,10 +38,14 @@ const getAllUsers = async () => {
   return user;
 }
 
+const loginUser = async (email, password) => {
+  return await User.findByEmailPassForAuth(email,password)
+}
 module.exports = {
   addNewUser,
   getUserById,
   updateUserById,
   deleteUserById,
   getAllUsers,
+  loginUser
 }
