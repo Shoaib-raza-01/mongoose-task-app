@@ -1,4 +1,6 @@
-const { model, Schema } = require("mongoose")
+const { model, Schema } = require("mongoose");
+const { encryptPassword, checkPassword } = require("../bcrypt");
+const userRepository = require("../repositories/user-repository")
 
 const UserSchema = new Schema({
   name: {
@@ -26,6 +28,34 @@ const UserSchema = new Schema({
   }
 });
 
+UserSchema.pre("save" , async function(next){
+  const user = this
+  if (user.modifiedPaths().includes("password")){
+    user.password = await encryptPassword(user.password)
+  }
+  next();
+});
+
+
+//we can create our own functions in mongoos using static 
+// UserSchema.statics.functionName = ()>{}
+
+
+//function to login user
+
+UserSchema.statics.findByEmailPassForAuth = async (email,password) => {
+  const user =await User.findOne({email})
+  if(!user){
+    throw Error('Invalid credentials,  check email') //throwing error for invalid credentails
+  }
+  const encryptPassword = user.password
+  const isMatch = await checkPassword(password,encryptPassword)
+  if(!isMatch){
+    throw new Error("login failed... wrong password entered")
+  }
+  console.info("login success")
+  return user
+}
 const User = model("User", UserSchema);
 
 module.exports = User

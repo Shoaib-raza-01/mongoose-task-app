@@ -1,6 +1,6 @@
 const { connect } =  require("mongoose");
 
-const MONGO_DB_URL = "mongodb+srv://<username>:<password>@cluster0.oh3oz7r.mongodb.net";
+const MONGO_DB_URL = "mongodb+srv://razashoaib270:ShoaibRaza@cluster0.oh3oz7r.mongodb.net";
 
 const DATABASE_NAME = "task_app";
 

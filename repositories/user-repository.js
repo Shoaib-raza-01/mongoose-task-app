@@ -54,10 +54,22 @@ const getAllUsers = async () =>{
     return users;
 }
 
+//function to get a user by their email....
+// const getUserByEmail = (email) => {
+//   let user = User.findOne({email})
+//   if (!user) {
+//     console.log(`User with Email : ${email} was not found.........`);
+//     return null;
+//   }
+//   console.log(`user With Email : ${email} was successfully fetched from the database.......`);
+//   return user;
+// }
+
 module.exports = {
   addNewUser,
   deleteUserById,
   updateUserById,
   getUserById,
   getAllUsers,
+  // getUserByEmail,
 }
